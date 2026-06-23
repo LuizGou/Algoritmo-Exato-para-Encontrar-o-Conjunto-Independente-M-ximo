@@ -9,7 +9,6 @@ int n;
 Lista G;
 vector<int> melhor;
 
-// verifica se pode adicionar o vértice
 bool podeAdicionar(int v, vector<int>& atual) {
     for (int u : atual) {
         for (int viz : G[v]) {
@@ -19,7 +18,6 @@ bool podeAdicionar(int v, vector<int>& atual) {
     return true;
 }
 
-// backtracking
 void backtrack(int v, vector<int>& atual) {
     if (v == n) {
         if (atual.size() > melhor.size()) {
@@ -28,14 +26,12 @@ void backtrack(int v, vector<int>& atual) {
         return;
     }
 
-    // inclui v se possível
     if (podeAdicionar(v, atual)) {
         atual.push_back(v);
         backtrack(v + 1, atual);
         atual.pop_back();
     }
 
-    // não inclui v
     backtrack(v + 1, atual);
 }
 
